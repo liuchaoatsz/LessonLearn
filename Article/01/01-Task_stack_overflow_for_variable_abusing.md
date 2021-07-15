@@ -35,8 +35,10 @@ vidBL_UpdateTask|0x1FFE96F8|0x1FFE9948|0x1FFE9958|0x1FFE99B0
 ![](EditDataBreakPoint.png)
 - Run the program and execute the shell command
 - Program stopped:
-  <img src=ProgramHalt.PNG>
- Until now , I reproduce the issue . and let's start to analyse the context where the program stopped.
+  
+  ![](ProgramHalt.PNG)
+
+ Now , issue is reproduced . and let's start to analyse the context where the program stopped.
 
    From the disassembly windows , we can see :
    - According to callstack , vidBL_UpdateTask is running
