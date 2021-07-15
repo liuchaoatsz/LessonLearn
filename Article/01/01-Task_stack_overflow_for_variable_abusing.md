@@ -2,16 +2,16 @@
 > Allocating a big size temporary variable within function causes stack overflow.
 
 ## Background
-Some task TCB(task control block) will be overlapped after executing a specific shell command . 
+  Some task TCB(task control block) will be overlapped after executing a specific shell command . 
 
 ### What I observed:   
   
 |               |Normal|Exception|
-|             -:|:-|:-|
+|             :-|:-|:-|
 |**TaskList**   |There are 8 tasks in the list.![](TasksListBeforeOverlapped.PNG)|**Inblue_task** disappeared![](TaskListOverlapped.PNG)
 |**TCB**        |![](TCB_Before_Overlapped.PNG)|![](TCB_After_Overlapped.PNG)
 
-> TCB: Task Control Block . A struct type/handle in freertos to record the information of task .     
+> TCB: Task Control Block . A struct type/handle in freertos to record the information of task .       
 
 
 ### Organize the task memory address information in one table:
@@ -38,31 +38,32 @@ vidBL_UpdateTask|0x1FFE96F8|0x1FFE9948|0x1FFE9958|0x1FFE99B0
   <img src=ProgramHalt.PNG>
  Until now , I reproduce the issue . and let's start to analyse the context where the program stopped.
 
- From the disassembly windows , we can see :
- - According to callstack , vidBL_UpdateTask is running
- - The program stop after pushing {R3-R8,LR} to the stack (protect the caller's context)
- - The SP pointer point to address **0x1ffe95e0** .   
+   From the disassembly windows , we can see :
+   - According to callstack , vidBL_UpdateTask is running
+   - The program stop after pushing {R3-R8,LR} to the stack (protect the caller's context)
+   - The SP pointer point to address **0x1ffe95e0** .   
    <img src="Register.png" width=300 height=300>
  
- And it clearly shows that the operation of pushing register overwrites the TCB of InblueTask . But how does the stack pointer exceed stack range of itself ? And Continue to analyse the callers.
- The top of the call stack is vidBL_UpdateTask.Thanks to the powerful GUI of IAR , When  clicking the function name in call stack window , we can see the register value under the function you select.   
+  And it clearly shows that the operation of pushing register overwrites the TCB of InblueTask . But how does the stack pointer exceed stack range of itself ? And Continue to analyse the callers.   
+  The top of the call stack is vidBL_UpdateTask.Thanks to the powerful GUI of IAR , When  clicking the function name in call stack window , we can see the register value under the function you select.    
 
  ||Caller vidBL_UpdateTask| Caller MCP_Send|
  |:-:|:-:|:-:|
  ||<img src="Caller_vidBL_UpdateTask.PNG" width=300 height=250>|<img src="Caller_MCP_Send.PNG" width=300 height=250>|
  | Stack pointer value | **0x1ffe9930** | **0x1ffe95f8** |
 
-Until now we can make a conclusion that: the stack pointer point to a address(**0x1ffe95f8**) out of its range(**[0x1ffe96f8**,**0x1ffe99b0]**) when entering function MCP_Send . And we can put our attention on function MCP_Send.
-Assembly code of function MCP_Send:    
-<img src=FunctionMCP_Send.PNG height=600 width=600>
+  Until now we can make a conclusion that: the stack pointer point to a address(**0x1ffe95f8**) out of its range(**[0x1ffe96f8**,**0x1ffe99b0]**) when entering function MCP_Send . And we can put our attention on function MCP_Send.   
+  
+  Assembly code of function MCP_Send:    
+<img src=FunctionMCP_Send.png height=600 width=600>
 
-At the start of function MCP_Send, we can see that it reserves ***800 bytes*** for local variables .
+  At the start of function MCP_Send, we can see that it reserves ***800 bytes*** for local variables .
 
-Toggle a breakpoint here to execute step by step,and we can see that :
+  Toggle a breakpoint here to execute step by step,and we can see that :
 
 ||Before|After|
 |-|:-:|:-:|
-||<img src="FunctionWithinMCP_Send.PNG" height=250 width=300>|<img src="FunctionWithinMCP_Send2.PNG" height=250 width=300>|
+|Executing step by step|<img src="FunctionWithinMCP_Send.PNG" height=250 width=300>|<img src="FunctionWithinMCP_Send2.PNG" height=250 width=300>|
 |Stack pointer value|**0x1ffe9918**|**0x1ffe95f8**|
 
 
