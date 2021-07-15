@@ -9,7 +9,7 @@
 |               |Normal|Exception|
 |             :-|:-|:-|
 |**TaskList**   |There are 8 tasks in the list.![](TasksListBeforeOverlapped.PNG)|**Inblue_task** disappeared![](TaskListOverlapped.PNG)
-|**TCB**        |![](TCB_Before_Overlapped.PNG)|![](TCB_After_Overlapped.png)
+|**TCB**        |![](TCB_Before_Overlapped.PNG)|![](TCB_After_Overlapped.PNG)
 
 > TCB: Task Control Block . A struct type/handle in freertos to record the information of task .       
 
@@ -32,7 +32,7 @@ vidBL_UpdateTask|0x1FFE96F8|0x1FFE9948|0x1FFE9958|0x1FFE99B0
 ## Analyse:
 
 - Create a data breakpoint to locate the position where overwrite the task TCB memory:
-![](EditDataBreakPoint.png)
+![](EditDataBreakPoint.PNG)
 - Run the program and execute the shell command
 - Program stopped:
   
@@ -44,7 +44,7 @@ vidBL_UpdateTask|0x1FFE96F8|0x1FFE9948|0x1FFE9958|0x1FFE99B0
    - According to callstack , vidBL_UpdateTask is running
    - The program stop after pushing {R3-R8,LR} to the stack (protect the caller's context)
    - The SP pointer point to address **0x1ffe95e0** .   
-   <img src="Register.png" width=300 height=300>
+   <img src="Register.PNG" width=300 height=300>
  
   And it clearly shows that the operation of pushing register overwrites the TCB of InblueTask . But how does the stack pointer exceed stack range of itself ? And Continue to analyse the callers.   
   The top of the call stack is vidBL_UpdateTask.Thanks to the powerful GUI of IAR , When  clicking the function name in call stack window , we can see the register value under the function you select.    
@@ -57,7 +57,7 @@ vidBL_UpdateTask|0x1FFE96F8|0x1FFE9948|0x1FFE9958|0x1FFE99B0
   Until now we can make a conclusion that: the stack pointer point to a address(**0x1ffe95f8**) out of its range(**[0x1ffe96f8**,**0x1ffe99b0]**) when entering function MCP_Send . And we can put our attention on function MCP_Send.   
   
   Assembly code of function MCP_Send:    
-<img src=FunctionMCP_Send.png height=600 width=600>
+<img src=FunctionMCP_Send.PNG height=600 width=600>
 
   At the start of function MCP_Send, we can see that it reserves ***800 bytes*** for local variables .
 
