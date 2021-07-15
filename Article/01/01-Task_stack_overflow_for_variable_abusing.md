@@ -9,7 +9,7 @@
 |               |Normal|Exception|
 |             :-|:-|:-|
 |**TaskList**   |There are 8 tasks in the list.![](TasksListBeforeOverlapped.PNG)|**Inblue_task** disappeared![](TaskListOverlapped.PNG)
-|**TCB**        |![](TCB_Before_Overlapped.PNG)|![](TCB_After_Overlapped.PNG)
+|**TCB**        |![](TCB_Before_Overlapped.PNG)|![](TCB_After_Overlapped.png)
 
 > TCB: Task Control Block . A struct type/handle in freertos to record the information of task .       
 
