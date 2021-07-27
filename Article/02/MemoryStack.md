@@ -15,13 +15,17 @@
 <br />    
 
 ## Data Unit In Each Layer
+    
 |Module|Data Unit|
 |:-|:-|
 |**NvM**|[1] NV RAM: store data in ram  <br />[2] NV ROM: default value resides in ROM<br /> [3] NV Block: a logic block<br />|
 |**FEE**||
 |**FLS**||
 
+<br />    
+
 ![Data Unit Overview](DataUnitOverView.png)
+    
 ## Detail 
 - [NVRAM Manager](NVM.md)
 <!--- - [Flash Emulation EEPROM](FEE.md)
