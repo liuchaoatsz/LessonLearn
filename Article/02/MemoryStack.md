@@ -1,6 +1,28 @@
 # Memory Stack
 
-## Content
+
+
+## Architecture && Function Overview
+
+![](NVMArchitecture.png)
+
+|Abbreviation|Description|
+|:-|:-|
+|**NVM**|**NVRAM Manager**:<br />[1] Provide services for NvM User <br /> [2] Data integrity --CRC <br />[3] Data redundant --Store with two Nv Blocks  
+|**MemIf**|**Memory Abstraction Interface**:<br /> Interface Wrapper 
+|**FEE**|**Flash EEPROM Emulation**:<br/> [1] Virtual/Physical address mapping<br />[2] Unlimited writing<br /> [3] On-Chip/Off-Chip abstraction |
+
+<br />    
+
+## Data Unit In Each Layer
+|Module|Data Unit|
+|:-|:-|
+|**NvM**|[1] NV RAM: store data in ram  <br />[2] NV ROM: default value resides in ROM<br /> [3] NV Block: a logic block<br />|
+|**FEE**||
+|**FLS**||
+
+![Data Unit Overview](DataUnitOverView.png)
+## Detail 
 - [NVRAM Manager](NVM.md)
 <!--- - [Flash Emulation EEPROM](FEE.md)
 -->

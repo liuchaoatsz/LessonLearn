@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="uG6v9C_DAl3AwAriqZ8_" name="MainTaskState">
-        <mxGraphModel dx="1080" dy="1960" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1400" background="#F4F1DE" math="0" shadow="0">
+        <mxGraphModel dx="1346" dy="2212" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1400" background="#F4F1DE" math="0" shadow="0">
             <root>
                 <mxCell id="F0VhMpKQ809ujcyaHpOU-0"/>
                 <mxCell id="F0VhMpKQ809ujcyaHpOU-1" parent="F0VhMpKQ809ujcyaHpOU-0"/>
@@ -428,7 +428,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="fNHubE-WcjDKd4kwqCwI" name="READ_BLOCK">
-        <mxGraphModel dx="2298" dy="955" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1400" background="#F4F1DE" math="0" shadow="0">
+        <mxGraphModel dx="1651" dy="812" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1400" background="#F4F1DE" math="0" shadow="0">
             <root>
                 <mxCell id="90FN7MphlEFh6G6nW8YK-0"/>
                 <mxCell id="90FN7MphlEFh6G6nW8YK-1" parent="90FN7MphlEFh6G6nW8YK-0"/>
