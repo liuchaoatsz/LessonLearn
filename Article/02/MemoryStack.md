@@ -19,8 +19,7 @@
 |Module|Data Unit|
 |:-|:-|
 |**NvM**|[1] NV RAM: store data in ram  <br />[2] NV ROM: default value resides in ROM<br /> [3] NV Block: a logic block<br />|
-|**FEE**||
-|**FLS**||
+|**FEE**|[1] Data Set <br /> [2] Instance|
 
 <br />    
 
