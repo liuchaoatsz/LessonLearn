@@ -24,11 +24,18 @@
 <br />    
 
 ![Data Unit Overview](DataUnitOverView.png)
-    
+
+## Background
+All my recordings are based on Vector Microsar solution.   
+|Module|Version|
+|-|-|
+|NvM|5.07.01|
+|FEE_30_SmallSector|2.00.01|
+
+   
 ## Detail 
 - [NVRAM Manager](NVM.md)
-<!--- - [Flash Emulation EEPROM](FEE.md)
--->
+- [Flash Emulation EEPROM](FEE.md)
 
 ## Reference <br />
 - [Vector Standard Fee and Small Fee](https://support.vector.com/kb?id=kb_article_view&sysparm_article=KB0012027&sys_kb_id=8c2582281b2614148e9a535c2e4bcbe8&spa=1)
